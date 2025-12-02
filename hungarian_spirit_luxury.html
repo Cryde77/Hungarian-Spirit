@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hungarian Spirit - A Magyar Prémium Koktél</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #1a1410;
+            color: #f5f1ed;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0d0a08 0%, #1a1410 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23d4af37" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            opacity: 0.5;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #8b7355;
+            font-size: 1.35rem;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+
+        nav {
+            background-color: #2d2520;
+            padding: 1.5rem 2rem;
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            border-bottom: 2px solid #d4af37;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover {
+            border-bottom: 3px solid #d4af37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2d2520 0%, #1a1410 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-left: 6px solid #d4af37;
+            border-radius: 4px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: url('https://pplx-res.cloudinary.com/image/upload/v1764683057/search_images/ecccfbe0d736fa1db58b7a75518f9b1aadf6ce4d.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            border-radius: 4px;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #f5f1ed;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #2d2520 0%, #1a1410 100%);
+            padding: 3rem;
+            border-left: 6px solid #d4af37;
+            border-radius: 4px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section p {
+            color: #f5f1ed;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .image-section {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .image-section img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 3px solid #d4af37;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-box {
+            background-color: rgba(10, 7, 4, 0.8);
+            padding: 2rem;
+            border: 2px solid #d4af37;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(212, 175, 55, 0.3);
+        }
+
+        .feature-box h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .feature-box p {
+            color: #cbd5e1;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 2px solid #d4af37;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f5c63d 100%);
+            color: #1a1410;
+            padding: 1rem 2.5rem;
+            margin-top: 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.125rem;
+            transition: all 0.3s;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(212, 175, 55, 0.6);
+        }
+
+        .bartender-zone {
+            background: linear-gradient(135deg, #0d0a08 0%, #1a1410 100%);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-top: 4px solid #d4af37;
+            border-bottom: 4px solid #d4af37;
+        }
+
+        .bartender-zone h2 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .recipe-card {
+            background: rgba(45, 37, 32, 0.8);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 6px solid #d4af37;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .recipe-card h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .recipe-card p {
+            color: #f5f1ed;
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+        }
+
+        .tri-color {
+            display: flex;
+            height: 6px;
+            margin-top: 1.5rem;
+            gap: 0;
+        }
+
+        .tri-color div {
+            flex: 1;
+        }
+
+        .red { background-color: #cd2a3e; }
+        .white { background-color: #ffffff; }
+        .green { background-color: #436f4d; }
+
+        footer {
+            background: linear-gradient(135deg, #0d0a08 0%, #1a1410 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 4px solid #d4af37;
+            margin-top: 4rem;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        footer p {
+            color: #8b7355;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d4af37, transparent);
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hungarian Spirit</h1>
+        <p>A magyar prémium élmény Németországban</p>
+        <div class="tri-color">
+            <div class="red"></div>
+            <div class="white"></div>
+            <div class="green"></div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#tortenet">Történet</a>
+        <a href="#bartender">Bartender Zone</a>
+        <a href="#shop">Webáruház</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+    </nav>
+
+    <div class="hero">
+        <h2>A magyar lélek három színe</h2>
+        <p>Tüzes pálinka, frissítő természet, mézédes napfény. Törköly pálinka + lime, méz, szódavíz, menta.</p>
+        <a href="#shop" class="cta-button">Rendelj most</a>
+    </div>
+
+    <div class="container">
+
+        <!-- TÖRTÉNET ROVAT -->
+        <section id="tortenet" class="section">
+            <h2>Magyar pálinka tradíciók</h2>
+            <p>A pálinka több mint 600 éves magyar hagyomány. A Hungarian Spirit ezt a hungarikum alapanyagot viszi a világ bárjaiba, modern, nemzetközi koktél formájában.</p>
+
+            <div class="image-section">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1764683057/search_images/53b9722785bbc2c7e985e7166a06bee2aba26b8d.jpg" alt="Magyar terroir, szőlőskert">
+            </div>
+
+            <p>A terroir, vagyis a termőhely egyedisége, minden csepp pálinkában benne van. Mi csak magyar pálinkagyártókkal dolgozunk együtt, hogy garantáljuk az autentikus élményt.</p>
+
+            <div class="features">
+                <div class="feature-box">
+                    <h3>Készítőink</h3>
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1764683058/search_images/a5d147bbd0874d5b763fbadd29c266949257dc85.jpg" alt="Pálinka üveg" class="feature-image">
+                    <p>Interjúk magyar pálinkaházzakkal, mesterekkel, akik generációk óta őrzik a tudást.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Terroir</h3>
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1764683057/search_images/67d4ce09f1d6b9011f77edc0e12f8bbfad268f33.jpg" alt="Szőlőskert" class="feature-image">
+                    <p>Magyar termőhelyek, gyümölcsök, tradíciók - mind benne vannak egy pohár Hungarian Spiritben.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Hungarikum</h3>
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1764683057/search_images/fd1b219ca3c3905207d647ff19dfa0401e6f0890.jpg" alt="Luxus bár" class="feature-image">
+                    <p>A pálinka hivatalos magyar nemzeti érték. Mi ezt visszük a nemzetközi koktélkultúrába.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- BARTENDER ZONE -->
+        <div id="bartender" class="bartender-zone">
+            <div class="container">
+                <h2>Bartender Zone</h2>
+                <p style="text-align: center; color: #f5f1ed; margin-bottom: 2rem; font-size: 1.2rem;">Receptúrák, oktatóvideók, versenyfeladatok - minden, ami bartendereknek kell.</p>
+
+                <div class="image-section">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1764683057/search_images/ecccfbe0d736fa1db58b7a75518f9b1aadf6ce4d.jpg" alt="Bartender készít koktélt">
+                </div>
+
+                <div class="recipe-card">
+                    <h3>Hungarian Spirit - Classic</h3>
+                    <p><strong>Alaprecept:</strong> 50ml törköly pálinka, 20ml frissen facsart lime lé, 15ml méz szirup, 100ml szódavíz, friss mentalevelek</p>
+                    <p><strong>Tálalás:</strong> Hosszú pohár, jégkockák, piros-fehér-zöld díszítés (lime karika, szívószál)</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h3>Variációk</h3>
+                    <p><strong>Spicy Spirit:</strong> + 2 szelet friss chili</p>
+                    <p><strong>Berry Spirit:</strong> + 30ml málna püré</p>
+                    <p><strong>Herbal Spirit:</strong> + bazsalikom és rozmaring</p>
+                </div>
+
+                <div class="recipe-card">
+                    <h3>Oktatóvideók & Challenge Series</h3>
+                    <p>Nézd meg videóinkat, ahol berlini és budapesti bartenderek mutatják be a tökéletes Hungarian Spirit készítést. Versenyezz más bartenderekkel, ossz meg saját receptjeidet, csatlakozz a Hungarian Spirit közösséghez.</p>
+                    <a href="#" class="cta-button">Videók és challenge</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- WEBÁRUHÁZ -->
+        <section id="shop" class="section">
+            <h2>Webáruház - Mixer Kit-ek</h2>
+            <p>Készítsd el otthon is a tökéletes Hungarian Spirit koktélt. Mixer kit-jeink tartalmazzák a szükséges ingredienseket, receptet és a márka történetét.</p>
+
+            <div class="image-section">
+                <img src="https://pplx-res.cloudinary.com/image/upload/v1764683057/search_images/7ad60e5d43229088f083d076df8722bc3a75a654.jpg" alt="Prémium koktél bar">
+            </div>
+
+            <div class="features">
+                <div class="feature-box">
+                    <h3>Classic Mixer Kit</h3>
+                    <p><strong style="color: #d4af37; font-size: 1.25rem;">39 EUR</strong></p>
+                    <p>3x home serve kit (pálinka, lime koncentrátum, méz szirup, menta), részletes recept, brand story kártya</p>
+                    <a href="#" class="cta-button">Vásárlás</a>
+                </div>
+                <div class="feature-box">
+                    <h3>Premium Gift Package</h3>
+                    <p><strong style="color: #d4af37; font-size: 1.25rem;">59 EUR</strong></p>
+                    <p>5x kit + exkluzív Hungarian Spirit pohár + díszdoboz, tökéletes ajándék</p>
+                    <a href="#" class="cta-button">Vásárlás</a>
+                </div>
+                <div class="feature-box">
+                    <h3>Havonta rendszeres rendelés</h3>
+                    <p><strong style="color: #d4af37; font-size: 1.25rem;">34 EUR/hó</strong></p>
+                    <p>Minden hónapban automatikusan kapj 3x kitet, 15% kedvezménnyel. Bármikor lemondható.</p>
+                    <a href="#" class="cta-button">Feliratkozás</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- MÁRKA HANGSÚLY -->
+        <section class="section">
+            <h2>Miért Hungarian Spirit?</h2>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>Valódi</h3>
+                    <p>Csak magyar pálinkát használunk, eredeti receptúrával.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Prémium</h3>
+                    <p>Minőségi alapanyagok, professzionális bartender partnereink.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Magyar identitás</h3>
+                    <p>Vigyük a világba a magyar pálinkakulturát modern formában.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Bartenderekre fókuszálva</h3>
+                    <p>Oktatás, közösség, versenysorozatok.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Luxus de elérhető</h3>
+                    <p>Prémium élmény, amely mindenki számára elérhető.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer id="kapcsolat">
+        <p style="font-size: 1.2rem; margin-bottom: 1rem;">Hungarian Spirit</p>
+        <p>&copy; 2025 Hungarian Spirit. Minden jog fenntartva.</p>
+        <p>Kapcsolat: info@hungarianspirit.de | Berlin, Németország</p>
+        <div class="tri-color">
+            <div class="red"></div>
+            <div class="white"></div>
+            <div class="green"></div>
+        </div>
+    </footer>
+
+</body>
+</html>
